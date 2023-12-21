@@ -151,12 +151,52 @@ Par défaut, le programme affiche une barre de progression des traitements. Néa
 
 Une aide en ligne pour l'utilisation du programme doit être intégrée.
 
-## Traitements du tableau des CSECT
+## Traitement du tableau des CSECT
 
-Toutes les CSECT ne faisant pas référence au COBOL, à l'Assembleur ou au PL/X seront ignorées.
+Toutes les CSECT qui ne font pas référence au COBOL, à l'assembleur ou au PL/X seront ignorées.
 
-## Extractions des données
+## Extraction des données d'une section
 
+- Le nom de la LOADLIB
+- Le nom du module exécutable
+- La date de Link-Edit du module exécutable
+- L'heure de Link-Edit du module exécutable
+- La taille du module exécutable
+- L'AMODE et le RMODE du module exécutable
+
+![Attribut du module](./vlm_1.png)
+
+À cela s'ajoutent les informations des CSECT. Pour chacune :
+
+- Le nom de la CSECT 
+- L'adresse de la CSECT par rapport au début du module exécutable
+- La taille de la CSECT
+- Le compilateur utilisé pour compiler cette CSECT
+- Le nombre total de CSECT constituant le module exécutable
+
+![Attribut du module](./vlm_2.png)
+
+Certaines informations doivent être déduites et représentées sous forme d'indicateurs à deux états : 'Y' pour Oui et 'N' pour Non.
+
+Est-ce un module exécutable nécessitant une connexion CICS ? Cet état est déterminé si l'un des STUB CICS est présent, c'est-à-dire si une CSECT porte l'un des noms suivants :
+- ```DFHEAG``` : pour les programmes Assembleur sans l'option LEASM
+- ```DFHELII``` : pour les programmes C, C++, COBOL, PL/I et Assembleur avec l'option LEASM
+- ```DFHEAI0``` : pour les programmes Assembleur avec l'option LEASM qui utilisent des registres de base
+- ```DFHEAI1``` : pour les programmes Assembleur avec l'option LEASM qui utilisent des registres de base
+            et qui ont besoin d'un accès direct aux blocs de contrôle CICS
+- ```DFHEAI2``` : pour les programmes Assembleur avec l'option LEASM qui utilisent des registres de base et qui ont besoin d'un accès direct aux blocs de contrôle CICS et aux registres de sauvegarde CICS
+
+Est-ce un module exécutable nécessitant une connexion DB2 ? Cet état est déterminé si l'un des STUB DB2 est présent, c'est-à-dire si une CSECT porte l'un des noms suivants :
+- ```DSNALI``` : pour les programmes COBOL, PL/I ou Assembleur en liaison statique et en mode batch
+- ```DSNCLI``` : pour les programmes C, C++, Java ou REXX en liaison dynamique et en mode batch
+- ```DSNELI``` : pour les programmes COBOL, PL/I ou Assembleur en liaison statique et en mode online (CICS ou IMS)
+- ```DSNHLI``` : pour les programmes C, C++, Java ou REXX en liaison dynamique et en mode online (CICS ou IMS)
+
+Est-ce un module exécutable nécessitant une connexion WMQ ? Cet état est déterminé si l'un des STUB MQ est présent, c'est-à-dire si une CSECT porte l'un des noms suivants :
+- ```CSQBSTUB``` : pour les programmes COBOL, PL/I ou Assembleur en liaison statique et en mode batch
+- ```CSQBSTUC``` : pour les programmes C, C++, Java ou REXX en liaison dynamique et en mode batch
+- ```CSQBSTUE``` : pour les programmes COBOL, PL/I ou Assembleur en liaison statique et en mode online (CICS ou IMS)
+- ```CSQBSTUF``` : pour les programmes C, C++, Java ou REXX en liaison dynamique et en mode online (CICS ou IMS)
 
 # Release
 

@@ -1,5 +1,5 @@
 # ViewLoadModule
-VLM signifie “View Load Module” il s'agit d'une focntion de IBM File Manager pour z/OS.
+VLM signifie &laquo;View Load Module&raquo; il s'agit d'une focntion de IBM File Manager pour z/OS.
 
 L'objectif de ce projet est de fournir un outil dédié à l'extraction spécifique de caractéristiques des modules IBM z/OS, lesquels sont stockés dans des LOADLIBS. Ce processus d'extraction découle de l'analyse préalable effectuée au moyen de la fonction **VLM d'IBM File Manager for z/OS**, constituant ainsi la source essentielle de données de ce projet.
 
@@ -51,10 +51,30 @@ Suit le tableau des CSECT qui compose le module. Prêtez attention à la derniè
  FMNBA215 13 Control sections processed
 ```
 
-## Quelques particularités
-Fréquement dans les fichiers IBM Mainframe le premier carcatère de la ligne est un caractère de commande :
-- "0" indique une nouvelle ligne
-- "1" indique une nouvelle page
+## Règles de gestion
+
+### Détection des sections
+
+Le fichier doit être découpé en sections. Une section commence avec une ligne contenant &laquo;Load Module Information&raquo; et se termine avec une ligne débutant par &laquo;FMNBA215&raquo;. Ainsi, ces paires de lignes sont associées, et le nombre de sections correspond au nombre d'apparitions du début de section, qui est équivalent au nombre de fins de section.
+
+### Identification des Lignes d'une section
+
+Toutes les lignes comprises entre le début et la fin de section sont regrouppées au sein d'une même structure de données.
+
+### Filtrage des lignes
+
+- Les lignes vides et celles composées uniquement d'espaces doivent être ignorées ;
+- Les lignes contenant les motifs ci-dessous doivent être ignorées :
+  - ```'$$FILEM'```
+  - ```'IBM File Manager for z/OS'```
+  - ```'Attributes'```
+  - ```'Name Type|---------'```
+
+### Spécificités de certaines lignes
+
+Dans certains fichiers IBM Mainframe le premier caractère de la ligne est un caractère de commande, qui ici devra être ignoré :
+- "0" indique un saut de ligne
+- "1" indique un saut de page
 
 La dernière ligne __non vide__ de la section &laquo;Load Module Information&raquo; peut prendre différentes formes :
 ```
@@ -77,7 +97,7 @@ La dernière ligne __non vide__ de la section &laquo;Load Module Information&raq
        Attributes                   TS
 ```
 
-Le tableau des CSECT peut être vide :
+Le tableau des CSECT peut être vide et le nombre de CSECT sera valorisé à zéro :
 ```
  Name      Type Address Size    Class            A/RMODE Compiler 1                   Compiler 2                   Date
  --------- ---- ------- ------- ---------------- ------- ---------------------------- ---------------------------- ----------
@@ -118,6 +138,18 @@ L'information &laquo;Compiler 1&raquo; et/ou &laquo;Compiler 2&raquo; du tableau
  CEEBINT    SD  0009D08 0000008 B_TEXT           MIN/ANY PL/X 390 V2R4                HIGH-LEVEL ASSEMBLER V1R6    2015/03/04
  FMNBA215 28 Control sections processed
 ```
+
+### Barre de Progression
+
+Implémentez une barre de progression des traitements par défaut. Toutefois, elle doit pouvoir être désactivée au besoin pour permettre une exécution dite &laquo;silencieuse$raquo;.
+
+### Paramètres en Ligne de Commande 
+
+Par défaut, le programme traite un fichier nommé ```./vlm.txt``` stocké dans le répertoire courant. Cependant, cette configuration doit être ajustable, permettant à l'utilisateur de spécifier l'emplacement et le nom du fichier à traiter.
+
+Par défaut, le programme affiche une barre de progression des traitements. Néanmoins, un paramètre correspondant doit être disponible pour donner à l'utilisateur la possibilité d'inhiber cette fonctionnalité, optant ainsi pour un mode d'exécution &laquo;silencieux&raquo;.
+
+Une aide en ligne pour l'utilisation du programme doit être intégrée.
 
 # vlm.py
 

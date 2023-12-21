@@ -177,9 +177,12 @@ Attention il faut aussi récupérer lee nombre total de CSECT constituant le mod
 
 ![Attribut du module](./vlm_2.png)
 
-Certaines informations doivent être déduites et représentées sous forme d'indicateurs à deux états : **'Y'** pour Oui et **'N'** pour Non.
+Certaines informations doivent être déduites et représentées sous forme d'indicateurs à deux états, **'Y'** pour Oui et **'N'** pour Non :
+- Est-ce un module exécutable nécessitant une connexion CICS ?
+- Est-ce un module exécutable nécessitant une connexion DB2 ?
+- Est-ce un module exécutable nécessitant une connexion WMQ ?
 
-Est-ce un module exécutable nécessitant une connexion CICS ? Cet état est déterminé si l'un des STUB CICS est présent, c'est-à-dire si une CSECT porte l'un des noms suivants :
+Requiert une connexion CICS si un STUB CICS est présent dans le module exécutable, c'est-à-dire si une CSECT porte l'un des noms suivants :
 - ```DFHEAG``` : pour les programmes Assembleur sans l'option LEASM
 - ```DFHELII``` : pour les programmes C, C++, COBOL, PL/I et Assembleur avec l'option LEASM
 - ```DFHEAI0``` : pour les programmes Assembleur avec l'option LEASM qui utilisent des registres de base
@@ -187,17 +190,19 @@ Est-ce un module exécutable nécessitant une connexion CICS ? Cet état est dé
             et qui ont besoin d'un accès direct aux blocs de contrôle CICS
 - ```DFHEAI2``` : pour les programmes Assembleur avec l'option LEASM qui utilisent des registres de base et qui ont besoin d'un accès direct aux blocs de contrôle CICS et aux registres de sauvegarde CICS
 
-Est-ce un module exécutable nécessitant une connexion DB2 ? Cet état est déterminé si l'un des STUB DB2 est présent, c'est-à-dire si une CSECT porte l'un des noms suivants :
+Requiert une connexion DB2 si un STUB DB2 est présent dans le module exécutable, c'est-à-dire si une CSECT porte l'un des noms suivants :
 - ```DSNALI``` : pour les programmes COBOL, PL/I ou Assembleur en liaison statique et en mode batch
 - ```DSNCLI``` : pour les programmes C, C++, Java ou REXX en liaison dynamique et en mode batch
 - ```DSNELI``` : pour les programmes COBOL, PL/I ou Assembleur en liaison statique et en mode online (CICS ou IMS)
 - ```DSNHLI``` : pour les programmes C, C++, Java ou REXX en liaison dynamique et en mode online (CICS ou IMS)
 
-Est-ce un module exécutable nécessitant une connexion WMQ ? Cet état est déterminé si l'un des STUB MQ est présent, c'est-à-dire si une CSECT porte l'un des noms suivants :
+Requiert une connexion MQUEUE SERIE si un STUB MQ est présent dans le module exécutable, c'est-à-dire si une CSECT porte l'un des noms suivants :
 - ```CSQBSTUB``` : pour les programmes COBOL, PL/I ou Assembleur en liaison statique et en mode batch
 - ```CSQBSTUC``` : pour les programmes C, C++, Java ou REXX en liaison dynamique et en mode batch
 - ```CSQBSTUE``` : pour les programmes COBOL, PL/I ou Assembleur en liaison statique et en mode online (CICS ou IMS)
 - ```CSQBSTUF``` : pour les programmes C, C++, Java ou REXX en liaison dynamique et en mode online (CICS ou IMS)
+
+En complément, il est nécessaire de représenter à l'aide d'un indicateur à deux états, **'Y'** pour Oui et **'N'** pour Non, la situation où l'une des CSECT incluses dans le module exécutable correspond à un développement réalisé par LCL. Si tel est le cas, une référence à la CSECT sera également trouvée dans le fichier sous la forme d'un module exécutable, en opposition aux références de CSECT développées par IBM, telles que les STUB CICS, DB2, WMQ, ou les CSECT IGZ* correspondant à des modules COBOL, ainsi que les CSECT CEE* correspondant à des modules du Language Environment, etc.
 
 # Appel Statique versus Appel Dynamique
 

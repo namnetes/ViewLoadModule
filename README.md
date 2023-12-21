@@ -141,7 +141,7 @@ L'information &laquo;Compiler 1&raquo; et/ou &laquo;Compiler 2&raquo; du tableau
 
 ## Barre de Progression
 
-Implémentez une barre de progression des traitements par défaut. Toutefois, elle doit pouvoir être désactivée au besoin pour permettre une exécution dite &laquo;silencieuse$raquo;.
+Implémentez une barre de progression des traitements par défaut. Toutefois, elle doit pouvoir être désactivée au besoin pour permettre une exécution dite &laquo;silencieuse&raquo;.
 
 ## Paramètres en Ligne de Commande 
 
@@ -208,7 +208,7 @@ En complément, il est nécessaire de représenter à l'aide d'un indicateur à 
 
 Un appel de module peut être soit statique soit dynamique, et cela concerne la manière dont le programme appelant (ou client) fait référence et exécute le code d'un autre module (ou sous-programme).
 
-## Appel de Module Statique :
+## Appel de Module Statique
 
 Dans un appel de module statique, la liaison entre le programme appelant et le module appelé se fait au moment de la compilation. Cela signifie que le compilateur résout les adresses des sous-programmes appelés et génère un code exécutable spécifique à ces adresses. Les adresses des sous-programmes sont fixées au moment de la compilation et ne changent pas pendant l'exécution.
 
@@ -221,7 +221,7 @@ Inconvénients de l'appel de module statique :
 
 - **Flexibilité :** Les adresses sont figées à la compilation, ce qui peut rendre difficile la modification dynamique des modules.
 
-## Appel de Module Dynamique :
+## Appel de Module Dynamique
 
 Dans un appel de module dynamique, la liaison entre le programme appelant et le module appelé se fait au moment de l'exécution. Les adresses sont résolues à l'exécution, permettant une plus grande flexibilité.
 
@@ -233,6 +233,13 @@ Avantages de l'appel de module dynamique :
 Inconvénients de l'appel de module dynamique :
 
 - **Performance :** L'appel de modules dynamiques peut entraîner une surcharge de performance car les adresses sont résolues à l'exécution.
+
+# Points de contrôle à mettre en œuvre
+
+- La gestion des paramètres en ligne de commande ;
+- Le fichier à traiter ;
+- Le nombre de sections doit être égal au nombre de débuts de section, ce qui est équivalent au nombre de fins de section ;
+- Une section est obligatoirement délimitée par une paire de début de section et de fin de section associée.
 
 # Release
 

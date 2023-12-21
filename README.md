@@ -172,11 +172,12 @@ Toutes les CSECT qui ne font pas référence au COBOL, à l'assembleur ou au PL/
 - L'adresse de la CSECT par rapport au début du module exécutable
 - La taille de la CSECT
 - Le compilateur utilisé pour compiler cette CSECT
-- Le nombre total de CSECT constituant le module exécutable
+
+Attention il faut aussi récupérer lee nombre total de CSECT constituant le module exécutable.
 
 ![Attribut du module](./vlm_2.png)
 
-Certaines informations doivent être déduites et représentées sous forme d'indicateurs à deux états : 'Y' pour Oui et 'N' pour Non.
+Certaines informations doivent être déduites et représentées sous forme d'indicateurs à deux états : **'Y'** pour Oui et **'N'** pour Non.
 
 Est-ce un module exécutable nécessitant une connexion CICS ? Cet état est déterminé si l'un des STUB CICS est présent, c'est-à-dire si une CSECT porte l'un des noms suivants :
 - ```DFHEAG``` : pour les programmes Assembleur sans l'option LEASM
@@ -197,6 +198,36 @@ Est-ce un module exécutable nécessitant une connexion WMQ ? Cet état est dét
 - ```CSQBSTUC``` : pour les programmes C, C++, Java ou REXX en liaison dynamique et en mode batch
 - ```CSQBSTUE``` : pour les programmes COBOL, PL/I ou Assembleur en liaison statique et en mode online (CICS ou IMS)
 - ```CSQBSTUF``` : pour les programmes C, C++, Java ou REXX en liaison dynamique et en mode online (CICS ou IMS)
+
+# Appel Statique versus Appel Dynamique
+
+Un appel de module peut être soit statique soit dynamique, et cela concerne la manière dont le programme appelant (ou client) fait référence et exécute le code d'un autre module (ou sous-programme).
+
+## Appel de Module Statique :
+
+Dans un appel de module statique, la liaison entre le programme appelant et le module appelé se fait au moment de la compilation. Cela signifie que le compilateur résout les adresses des sous-programmes appelés et génère un code exécutable spécifique à ces adresses. Les adresses des sous-programmes sont fixées au moment de la compilation et ne changent pas pendant l'exécution.
+
+Avantages de l'appel de module statique :
+
+- **Performances :** Les appels de modules sont plus rapides car les adresses sont résolues à la compilation ;
+- **Contrôle :** Le programme appelant a un contrôle total sur les adresses des modules appelés.
+
+Inconvénients de l'appel de module statique :
+
+- **Flexibilité :** Les adresses sont figées à la compilation, ce qui peut rendre difficile la modification dynamique des modules.
+
+## Appel de Module Dynamique :
+
+Dans un appel de module dynamique, la liaison entre le programme appelant et le module appelé se fait au moment de l'exécution. Les adresses sont résolues à l'exécution, permettant une plus grande flexibilité.
+
+Avantages de l'appel de module dynamique :
+
+- **Flexibilité :** Les adresses sont résolues à l'exécution, offrant une plus grande flexibilité pour modifier ou remplacer des modules ;
+- **Extensibilité :** Permet d'ajouter de nouveaux modules sans avoir à recompiler le programme appelant.
+
+Inconvénients de l'appel de module dynamique :
+
+- **Performance :** L'appel de modules dynamiques peut entraîner une surcharge de performance car les adresses sont résolues à l'exécution.
 
 # Release
 

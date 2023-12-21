@@ -51,17 +51,17 @@ Suit le tableau des CSECT qui compose le module. Prêtez attention à la derniè
  FMNBA215 13 Control sections processed
 ```
 
-## Règles de gestion
+# Règles de gestion
 
-### Détection des sections
+## Détection des sections
 
 Le fichier doit être découpé en sections. Une section commence avec une ligne contenant &laquo;Load Module Information&raquo; et se termine avec une ligne débutant par &laquo;FMNBA215&raquo;. Ainsi, ces paires de lignes sont associées, et le nombre de sections correspond au nombre d'apparitions du début de section, qui est équivalent au nombre de fins de section.
 
-### Identification des Lignes d'une section
+## Identification des Lignes d'une section
 
 Toutes les lignes comprises entre le début et la fin de section sont regrouppées au sein d'une même structure de données.
 
-### Filtrage des lignes
+## Filtrage des lignes
 
 - Les lignes vides et celles composées uniquement d'espaces doivent être ignorées ;
 - Les lignes contenant les motifs ci-dessous doivent être ignorées :
@@ -70,7 +70,7 @@ Toutes les lignes comprises entre le début et la fin de section sont regrouppé
   - ```'Attributes'```
   - ```'Name Type|---------'```
 
-### Spécificités de certaines lignes
+## Spécificités de certaines lignes
 
 Dans certains fichiers IBM Mainframe le premier caractère de la ligne est un caractère de commande, qui ici devra être ignoré :
 - "0" indique un saut de ligne
@@ -139,11 +139,11 @@ L'information &laquo;Compiler 1&raquo; et/ou &laquo;Compiler 2&raquo; du tableau
  FMNBA215 28 Control sections processed
 ```
 
-### Barre de Progression
+## Barre de Progression
 
 Implémentez une barre de progression des traitements par défaut. Toutefois, elle doit pouvoir être désactivée au besoin pour permettre une exécution dite &laquo;silencieuse$raquo;.
 
-### Paramètres en Ligne de Commande 
+## Paramètres en Ligne de Commande 
 
 Par défaut, le programme traite un fichier nommé ```./vlm.txt``` stocké dans le répertoire courant. Cependant, cette configuration doit être ajustable, permettant à l'utilisateur de spécifier l'emplacement et le nom du fichier à traiter.
 
@@ -151,7 +151,16 @@ Par défaut, le programme affiche une barre de progression des traitements. Néa
 
 Une aide en ligne pour l'utilisation du programme doit être intégrée.
 
-# vlm.py
+## Traitements du tableau des CSECT
+
+Toutes les CSECT ne faisant pas référence au COBOL, à l'Assembleur ou au PL/X seront ignorées.
+
+## Extractions des données
+
+
+# Release
+
+vlm.py
 
 Il correspond au nom du programme Python à exécuter. Ce script accepte les paramètres suivants :
 

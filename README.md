@@ -143,7 +143,7 @@ L'information &laquo;Compiler 1&raquo; et/ou &laquo;Compiler 2&raquo; du tableau
 
 Implémentez une barre de progression des traitements par défaut. Toutefois, elle doit pouvoir être désactivée au besoin pour permettre une exécution dite &laquo;silencieuse&raquo;.
 
-## Paramètres en Ligne de Commande 
+## Paramètres en Ligne de Commande {#args}
 
 Par défaut, le programme traite le fichier ```./vlm.txt``` situé dans le répertoire courant. Cependant, cette configuration est ajustable, permettant à l'utilisateur de spécifier l'emplacement et le nom du fichier à traiter.
 
@@ -250,7 +250,7 @@ Une exception doit être déclenchée dès qu'une erreur est détectée. Si cett
 
 # Résultat
 
-Le résultat doit être affiché sur la sortie standard au format CSV (Comma-Separated Values). Cependant, le caractère séparateur par défaut ne sera pas une virgule, traditionnellement utilisée aux États-Unis, mais le point-virgule. cf. [Paramètres](# Paramètres en Ligne de Commande )
+Le résultat doit être affiché sur la sortie standard au format CSV (Comma-Separated Values). Cependant, le caractère séparateur par défaut ne sera pas une virgule, traditionnellement utilisée aux États-Unis, mais le point-virgule. Cf. [Paramètres en Ligne de Commande](#args)
 
 
 

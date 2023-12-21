@@ -1,7 +1,7 @@
 # ViewLoadModule
-VLM signifie &laquo;View Load Module&raquo; il s'agit d'une fonction de IBM File Manager pour z/OS.
+VLM signifie &laquo;View Load Module&raquo; il s'agit d'une focntion de IBM File Manager pour z/OS.
 
-Ce projet vise à créer un outil spécialisé pour extraire des informations spécifiques des modules IBM z/OS stockés dans des LOADLIBS. Pour réaliser cette extraction, nous nous appuyons sur une analyse préalable effectuée à l'aide de la fonction VLM d'IBM File Manager for z/OS, qui constitue la principale source de données de ce projet.
+L'objectif de ce projet est de fournir un outil dédié à l'extraction spécifique de caractéristiques des modules IBM z/OS, lesquels sont stockés dans des LOADLIBS. Ce processus d'extraction découle de l'analyse préalable effectuée au moyen de la fonction **VLM d'IBM File Manager for z/OS**, constituant ainsi la source essentielle de données de ce projet.
 
 # Structure du fichier à analyser
 Un en-tête de page que l'on retrouve après chaque saut de page
@@ -55,7 +55,7 @@ Suit le tableau des CSECT qui compose le module. Prêtez attention à la derniè
 
 ## Détection des sections
 
-Le fichier doit être découpé en sections. Une section commence avec une ligne &laquo;Load Module Information&raquo; et se termine avec une ligne débutant par &laquo;FMNBA215&raquo;. Ainsi, ces paires de lignes sont associées, et le nombre de sections correspond au nombre d'apparitions du début de section, qui est équivalent au nombre de fins de section.
+Le fichier doit être découpé en sections. Une section commence avec une ligne contenant &laquo;Load Module Information&raquo; et se termine avec une ligne débutant par &laquo;FMNBA215&raquo;. Ainsi, ces paires de lignes sont associées, et le nombre de sections correspond au nombre d'apparitions du début de section, qui est équivalent au nombre de fins de section.
 
 ## Identification des Lignes d'une section
 
@@ -141,7 +141,7 @@ L'information &laquo;Compiler 1&raquo; et/ou &laquo;Compiler 2&raquo; du tableau
 
 ## Barre de Progression
 
-Implémentez une barre de progression des traitements qui par défaut sera active. Toutefois, elle doit pouvoir être désactivée au besoin pour permettre une exécution dite &laquo;silencieuse&raquo;.
+Implémentez une barre de progression des traitements par défaut. Toutefois, elle doit pouvoir être désactivée au besoin pour permettre une exécution dite &laquo;silencieuse&raquo;.
 
 ## Paramètres en Ligne de Commande {#args}
 

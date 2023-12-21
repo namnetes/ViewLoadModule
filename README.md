@@ -175,7 +175,7 @@ Toutes les CSECT qui ne font pas référence au COBOL, à l'Assembleur ou au PL/
 - La taille de la CSECT
 - Le compilateur utilisé pour compiler cette CSECT
 
-Attention il faut aussi récupérer lee nombre total de CSECT constituant le module exécutable.
+Attention il faut aussi récupérer le nombre total de CSECT constituant le module exécutable.
 
 ![Tableau des CSECT](./vlm_2.png)
 

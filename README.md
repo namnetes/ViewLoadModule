@@ -145,11 +145,13 @@ Implémentez une barre de progression des traitements par défaut. Toutefois, el
 
 ## Paramètres en Ligne de Commande 
 
-Par défaut, le programme traite un fichier nommé ```./vlm.txt``` stocké dans le répertoire courant. Cependant, cette configuration doit être ajustable, permettant à l'utilisateur de spécifier l'emplacement et le nom du fichier à traiter.
+Par défaut, le programme traite le fichier ```./vlm.txt``` situé dans le répertoire courant. Cependant, cette configuration est ajustable, permettant à l'utilisateur de spécifier l'emplacement et le nom du fichier à traiter.
 
-Par défaut, le programme affiche une barre de progression des traitements. Néanmoins, un paramètre correspondant doit être disponible pour donner à l'utilisateur la possibilité d'inhiber cette fonctionnalité, optant ainsi pour un mode d'exécution &laquo;silencieux&raquo;.
+Le programme affiche par défaut une barre de progression des traitements. Toutefois, un paramètre correspondant est disponible pour donner à l'utilisateur la possibilité d'inhiber cette fonctionnalité, optant ainsi pour un mode d'exécution &laquo;silencieux&raquo;.
 
-Une aide en ligne pour l'utilisation du programme doit être intégrée.
+Le programme produit par défaut un résultat au format CSV avec le caractère point-virgule comme séparateur de champs. Cette configuration est également ajustable, permettant à l'utilisateur de spécifier une alternative à ce caractère.
+
+Une aide en ligne pour l'utilisation du programme est intégrée.
 
 ## Traitement du tableau des CSECT
 
@@ -175,7 +177,7 @@ Toutes les CSECT qui ne font pas référence au COBOL, à l'Assembleur ou au PL/
 
 Attention il faut aussi récupérer lee nombre total de CSECT constituant le module exécutable.
 
-![Attribut du module](./vlm_2.png)
+![Tableau des CSECT](./vlm_2.png)
 
 Certaines informations doivent être déduites et représentées sous forme d'indicateurs à deux états, **'Y'** pour Oui et **'N'** pour Non :
 - Est-ce un module exécutable nécessitant une connexion CICS ?
@@ -245,6 +247,12 @@ Une exception doit être déclenchée dès qu'une erreur est détectée. Si cett
 
 - Le numéro de la section en cours
 - Le numéro de la dernière ligne du fichier lue
+
+# Résultat
+
+Le résultat doit être affiché sur la sortie standard au format CSV (Comma-Separated Values). Cependant, le caractère séparateur par défaut ne sera pas une virgule, traditionnellement utilisée aux États-Unis, mais le point-virgule. cf. [Paramètres](# Paramètres en Ligne de Commande )
+
+
 
 # Release
 

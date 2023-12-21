@@ -252,7 +252,16 @@ Une exception doit être déclenchée dès qu'une erreur est détectée. Si cett
 
 Le résultat doit être affiché sur la sortie standard au format CSV (Comma-Separated Values). Cependant, le caractère séparateur par défaut ne sera pas une virgule, traditionnellement utilisée aux États-Unis, mais le point-virgule. Cf. [Paramètres en Ligne de Commande](#args)
 
+Le résultat peut se diviser en trois colonnes :
+- les données extraites des attributs ;
+- les données extraites du tableau des CSECT ;
+- les données déduites un ensemble d'indicateurs à deux états.
 
+En raison de la nature variable du nombre de CSECT par module, c'est cette table des CSECT qui servira de pivot. Ainsi, pour un module exécutable, il y aura autant de lignes qu'il y a de CSECT présentes dans le tableau des CSECT, et bien évidemment, chaque ligne d'un même module présentera des éléments redondants tels que les attributs et certains indicateurs liés au module.
+
+L'exemple ci-dessous est coloré, et un alignement sur les colonnes a été mis en oeuvre afin de le rendre plus lisible :
+
+![Tableau des CSECT](./vlm_3.png)
 
 # Release
 

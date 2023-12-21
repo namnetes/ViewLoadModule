@@ -153,7 +153,7 @@ Une aide en ligne pour l'utilisation du programme doit être intégrée.
 
 ## Traitement du tableau des CSECT
 
-Toutes les CSECT qui ne font pas référence au COBOL, à l'assembleur ou au PL/X seront ignorées.
+Toutes les CSECT qui ne font pas référence au COBOL, à l'Assembleur ou au PL/X seront ignorées.
 
 ## Extraction des données d'une section
 

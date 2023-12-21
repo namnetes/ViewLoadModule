@@ -234,12 +234,17 @@ Inconvénients de l'appel de module dynamique :
 
 - **Performance :** L'appel de modules dynamiques peut entraîner une surcharge de performance car les adresses sont résolues à l'exécution.
 
-# Points de contrôle à mettre en œuvre
+# Gestion des exceptions
 
 - La gestion des paramètres en ligne de commande ;
 - Le fichier à traiter ;
 - Le nombre de sections doit être égal au nombre de débuts de section, ce qui est équivalent au nombre de fins de section ;
 - Une section est obligatoirement délimitée par une paire de début de section et de fin de section associée.
+
+Une exception doit être déclenchée dès qu'une erreur est détectée. Si cette erreur survient lors du traitement du fichier, cette exception devra retourner suffisamment d'éléments pour permettre la localisation de la ligne en cours de traitement au moment de l'erreur :
+
+- Le numéro de la section en cours
+- Le numéro de la dernière ligne du fichier lue
 
 # Release
 
